@@ -13,23 +13,24 @@
                     </div>
                 </div>
             </div>
-            @foreach ($categories as $category)
-                <div class="categories-item-wrap ">
-                    <div class="row justify-content-center">
-                        <div class="col-xl-2 col-lg-3 col-md-4 col-6">
-                            <div class="categories-item">
-                                <div class="categories-img">
-                                    <a href="blog.html"><img src="themeclient/assets/img/images/categories_img01.png"
-                                            alt=""></a>
-                                </div>
-                                <div class="  categories-content">
-                                    <a href="">{{ $category->name  }}</a>
-                                </div>
+            <div class="row justify-content-center">
+                @foreach ($categories as $category)
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-12 categories-item-wrap">
+                        <div class="categories-item">
+                            <div class="categories-img">
+                                <a href="">
+                                    <img src="{{ asset('themeclient/assets/img/images/categories_img02.png') }}"
+                                        alt="">
+                                </a>
+                            </div>
+                            <div class="categories-content">
+                                <a href="{{ url('category', [$category->id]) }}">{{ $category->name }}</a>
                             </div>
                         </div>
                     </div>
-                </div>
-            @endforeach
+                @endforeach
+            </div>
+
         </div>
         <div class="categories-shape-wrap">
             <img src="themeclient/assets/img/images/categories_shape01.png" alt="">

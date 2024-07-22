@@ -43,13 +43,17 @@
                                     <ul class="navigation">
                                         <li class="active menu-item-has-children"><a href="#">Trang chủ</a>
                                             <ul class="sub-menu">
-                                                <li class="active"><a href="{{ url('/') }}">Home 01 - Default</a></li>
+                                                <li class="active"><a href="{{ url('/') }}">Home 01 - Default</a>
+                                                </li>
                                             </ul>
                                         </li>
                                         <li class="menu-item-has-children"><a href="#">Danh mục</a>
                                             <ul class="sub-menu">
-                                                <li><a href="{{ url('/blog') }}">Blog Default</a></li>
-                                                <li><a href="{{ url('/blog2') }}">Blog Layout 02</a></li>
+                                                @foreach ($categories as $category)
+                                                    <li><a
+                                                            href="{{ url('category', [$category->id]) }}">{{ $category->name }}</a>
+                                                    </li>
+                                                @endforeach
                                             </ul>
                                         </li>
                                         <li><a href="{{ url('/about') }}">Về chúng tôi</a></li>
@@ -60,10 +64,12 @@
                         </div>
                         <div class="col-xl-2 col-lg-3 col-md-4">
                             <div class="logo text-center">
-                                <a href="{{ url('/') }}"><img src="themeclient/assets/img/logo/logo.png" alt="Logo"></a>
+                                <a href="{{ url('/') }}"><img src="{{ asset('themeclient/assets/img/logo/logo.png') }}"
+                                        alt="Logo"></a>
                             </div>
                             <div class="logo d-none text-center">
-                                <a href="{{ url('/') }}"><img src="themeclient/assets/img/logo/w_logo.png" alt="Logo"></a>
+                                <a href="{{ url('/') }}"><img src="{{ asset('themeclient/assets/img/logo/w_logo.png') }}"
+                                        alt="Logo"></a>
                             </div>
                         </div>
                         <div class="col-xl-5 col-lg-9 col-md-8">
@@ -101,10 +107,12 @@
                     <nav class="menu-box">
                         <div class="close-btn"><i class="fas fa-times"></i></div>
                         <div class="nav-logo">
-                            <a href="{{ url('/') }}"><img src="themeclient/assets/img/logo/logo.png" alt="Logo"></a>
+                            <a href="{{ url('/') }}"><img src="{{ asset('themeclient/assets/img/logo/logo.png') }}"
+                                    alt="Logo"></a>
                         </div>
                         <div class="nav-logo d-none">
-                            <a href="{{ url('/') }}"><img src="themeclient/assets/img/logo/w_logo.png" alt="Logo"></a>
+                            <a href="{{ url('/') }}"><img src="{{ asset('themeclient/assets/img/logo/w_logo.png') }}"
+                                    alt="Logo"></a>
                         </div>
                         <div class="mobile-search">
                             <form action="#">
@@ -143,23 +151,25 @@
         </div>
         <div class="offCanvas-content">
             <div class="offCanvas-logo logo">
-                <a href="{{ url('/') }}" class="logo-dark"><img src="themeclient/assets/img/logo/logo.png" alt="Logo"></a>
-                <a href="{{ url('/') }}" class="logo-light"><img src="themeclient/assets/img/logo/w_logo.png" alt="Logo"></a>
+                <a href="{{ url('/') }}" class="logo-dark"><img src="{{ asset('themeclient/assets/img/logo/logo.png') }}"
+                        alt="Logo"></a>
+                <a href="{{ url('/') }}" class="logo-light"><img src="{{ asset('themeclient/assets/img/logo/w_logo.png') }}"
+                        alt="Logo"></a>
             </div>
             <p>Lập luận ủng hộ việc sử dụng văn bản phụ sẽ như thế này: Nếu bạn sử dụng bất kỳ nội dung thực nào</p>
             <ul class="offCanvas-instagram list-wrap">
-                <li><a href="themeclient/assets/img/blog/hr_post01.jpg" class="popup-image"><img
-                            src="themeclient/assets/img/blog/hr_post01.jpg" alt="img"></a></li>
-                <li><a href="themeclient/assets/img/blog/hr_post02.jpg" class="popup-image"><img
-                            src="themeclient/assets/img/blog/hr_post02.jpg" alt="img"></a></li>
-                <li><a href="themeclient/assets/img/blog/hr_post03.jpg" class="popup-image"><img
-                            src="themeclient/assets/img/blog/hr_post03.jpg" alt="img"></a></li>
-                <li><a href="themeclient/assets/img/blog/hr_post04.jpg" class="popup-image"><img
-                            src="themeclient/assets/img/blog/hr_post04.jpg" alt="img"></a></li>
-                <li><a href="themeclient/assets/img/blog/hr_post05.jpg" class="popup-image"><img
-                            src="themeclient/assets/img/blog/hr_post05.jpg" alt="img"></a></li>
-                <li><a href="themeclient/assets/img/blog/hr_post06.jpg" class="popup-image"><img
-                            src="themeclient/assets/img/blog/hr_post06.jpg" alt="img"></a></li>
+                <li><a href="{{ asset('themeclient/assets/img/blog/hr_post01.jpg') }}" class="popup-image"><img
+                            src="{{ asset('themeclient/assets/img/blog/hr_post01.jpg') }}" alt="img"></a></li>
+                <li><a href="{{ asset('themeclient/assets/img/blog/hr_post02.jpg') }}" class="popup-image"><img
+                            src="{{ asset('themeclient/assets/img/blog/hr_post02.jpg') }}" alt="img"></a></li>
+                <li><a href="{{ asset('themeclient/assets/img/blog/hr_post03.jpg') }}" class="popup-image"><img
+                            src="{{ asset('themeclient/assets/img/blog/hr_post03.jpg') }}" alt="img"></a></li>
+                <li><a href="{{ asset('themeclient/assets/img/blog/hr_post04.jpg') }}" class="popup-image"><img
+                            src="{{ asset('themeclient/assets/img/blog/hr_post04.jpg') }}" alt="img"></a></li>
+                <li><a href="{{ asset('themeclient/assets/img/blog/hr_post05.jpg') }}" class="popup-image"><img
+                            src="{{ asset('themeclient/assets/img/blog/hr_post05.jpg') }}" alt="img"></a></li>
+                <li><a href="{{ asset('themeclient/assets/img/blog/hr_post06.jpg') }}" class="popup-image"><img
+                            src="{{ asset('themeclient/assets/img/blog/hr_post06.jpg') }}" alt="img"></a></li>
             </ul>
         </div>
         <div class="offCanvas-contact">

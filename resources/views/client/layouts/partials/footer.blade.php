@@ -5,7 +5,7 @@
                 <div class="col-lg-3 col-md-7">
                     <div class="footer-widget">
                         <div class="fw-logo">
-                            <a href="index.html"><img src="themeclient/assets/img/logo/w_logo.png" alt=""></a>
+                            <a href="index.html"><img src="{{ asset('themeclient/assets/img/logo/w_logo.png') }}" alt=""></a>
                         </div>
                         <div class="footer-content">
                             <p>Bơ nâu và đường nâu Caramelly ngon, mép giòn, nhân mềm và những vũng sô cô la nhỏ tan chảy.</p>
@@ -14,7 +14,7 @@
                 </div>
             </div>
         </div>
-        <div class="footer-shape" data-background="themeclient/assets/img/images/footer_shape.png"></div>
+        <div class="footer-shape" data-background="{{ asset('themeclient/assets/img/images/footer_shape.png') }}"></div>
     </div>
     <div class="footer-bottom">
         <div class="container">
