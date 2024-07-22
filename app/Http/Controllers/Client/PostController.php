@@ -9,8 +9,6 @@ use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
-
-
     public function index()
     {
         $categories = Category::with('posts')->get();

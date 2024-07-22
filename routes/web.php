@@ -17,15 +17,12 @@ use App\Http\Controllers\Client\PostController;
 |
 */
 
-Route::get('/',                 [PostController::class, 'index'])->name('index');
+Route::get('/',                                  [PostController::class, 'index'])->name('index');
 
-
-
-Route::get('category',                           [CategoryController::class, 'category'])->name('category.index');
 Route::get('category/{category_id}',             [CategoryController::class, 'showall'])->name('category.showall');
 
-Route::get('post',                  [PostController::class, 'post'])->name('post.index');
-Route::get('post/{id}',             [PostController::class, 'show'])->name('post.show');
+Route::get('post',                               [PostController::class, 'post'])->name('post.index');
+Route::get('post/{id}',                          [PostController::class, 'show'])->name('post.show');
 
 
 //---------------------------------------------
