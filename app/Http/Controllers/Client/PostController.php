@@ -17,7 +17,9 @@ class PostController extends Controller
 
     public function show($id)
     {  
+        $categories = Category::with('posts')->get();
         $post = DB::table('posts')->where('id', $id)->first();
-        return view('client.post.index', ['post'=> $post]);
+        $listpost = DB::table('posts')->where('category_id')->get();
+        return view('client.post.index', [ 'listpost' => $listpost, 'post'=> $post , 'categories' => $categories ]);
     }
 }
