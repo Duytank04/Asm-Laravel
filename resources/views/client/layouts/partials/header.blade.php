@@ -43,7 +43,7 @@
                                     <ul class="navigation">
                                         <li class="active menu-item-has-children"><a href="#">Trang chủ</a>
                                             <ul class="sub-menu">
-                                                <li class="active"><a href="{{ url('/') }}">Home 01 - Default</a>
+                                                <li class="active"><a href="{{ url('/') }}">Trang chủ</a>
                                                 </li>
                                             </ul>
                                         </li>
@@ -57,19 +57,18 @@
                                             </ul>
                                         </li>
                                         <li><a href="{{ url('/about') }}">Về chúng tôi</a></li>
-                                        <li><a href="{{ url('/contact') }}">Liên hệ</a></li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                         <div class="col-xl-2 col-lg-3 col-md-4">
                             <div class="logo text-center">
-                                <a href="{{ url('/') }}"><img src="{{ asset('themeclient/assets/img/logo/logo.png') }}"
-                                        alt="Logo"></a>
+                                <a href="{{ url('/') }}"><img
+                                        src="{{ asset('themeclient/assets/img/logo/logo.png') }}" alt="Logo"></a>
                             </div>
                             <div class="logo d-none text-center">
-                                <a href="{{ url('/') }}"><img src="{{ asset('themeclient/assets/img/logo/w_logo.png') }}"
-                                        alt="Logo"></a>
+                                <a href="{{ url('/') }}"><img
+                                        src="{{ asset('themeclient/assets/img/logo/w_logo.png') }}" alt="Logo"></a>
                             </div>
                         </div>
                         <div class="col-xl-5 col-lg-9 col-md-8">
@@ -82,17 +81,16 @@
                                 </div>
                                 <div class="header-action d-none d-md-block">
                                     <ul class="list-wrap">
-                                        <li class="header-wishlist">
-                                            <a href="javascript:void(0)"><i
-                                                    class="flaticon-heart"></i><span>0</span></a>
-                                        </li>
-                                        <li class="header-cart">
-                                            <a href="javascript:void(0)"><i
-                                                    class="flaticon-basket"></i><span>0</span></a>
-                                            <strong>$0.00</strong>
-                                        </li>
+                                        <form action="{{ route('logout') }}" method="POST">
+                                            @csrf                    
+                                                <button type="submit" >Đăng xuất</button>
+                                        </form>
                                         <li class="header-sine-in">
-                                            <a href="{{ url('/login') }}"><i class="flaticon-user"></i></a>
+                                            @if (Auth::check())
+                                                <a href="{{ url('/register') }}"><i class="flaticon-user">{{ Auth::user()->name }}</i></a>
+                                            @else
+                                                <a href="{{ url('/login') }}"><i class="flaticon-user"></i></a>
+                                            @endif
                                         </li>
                                     </ul>
                                 </div>
@@ -107,12 +105,12 @@
                     <nav class="menu-box">
                         <div class="close-btn"><i class="fas fa-times"></i></div>
                         <div class="nav-logo">
-                            <a href="{{ url('/') }}"><img src="{{ asset('themeclient/assets/img/logo/logo.png') }}"
-                                    alt="Logo"></a>
+                            <a href="{{ url('/') }}"><img
+                                    src="{{ asset('themeclient/assets/img/logo/logo.png') }}" alt="Logo"></a>
                         </div>
                         <div class="nav-logo d-none">
-                            <a href="{{ url('/') }}"><img src="{{ asset('themeclient/assets/img/logo/w_logo.png') }}"
-                                    alt="Logo"></a>
+                            <a href="{{ url('/') }}"><img
+                                    src="{{ asset('themeclient/assets/img/logo/w_logo.png') }}" alt="Logo"></a>
                         </div>
                         <div class="mobile-search">
                             <form action="#">
@@ -151,10 +149,10 @@
         </div>
         <div class="offCanvas-content">
             <div class="offCanvas-logo logo">
-                <a href="{{ url('/') }}" class="logo-dark"><img src="{{ asset('themeclient/assets/img/logo/logo.png') }}"
-                        alt="Logo"></a>
-                <a href="{{ url('/') }}" class="logo-light"><img src="{{ asset('themeclient/assets/img/logo/w_logo.png') }}"
-                        alt="Logo"></a>
+                <a href="{{ url('/') }}" class="logo-dark"><img
+                        src="{{ asset('themeclient/assets/img/logo/logo.png') }}" alt="Logo"></a>
+                <a href="{{ url('/') }}" class="logo-light"><img
+                        src="{{ asset('themeclient/assets/img/logo/w_logo.png') }}" alt="Logo"></a>
             </div>
             <p>Lập luận ủng hộ việc sử dụng văn bản phụ sẽ như thế này: Nếu bạn sử dụng bất kỳ nội dung thực nào</p>
             <ul class="offCanvas-instagram list-wrap">

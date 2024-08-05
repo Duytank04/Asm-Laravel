@@ -1,5 +1,5 @@
 @section('title')
-Login - Zaira
+    Login - Zaira
 @endsection
 
 @extends('client.layouts.master')
@@ -28,28 +28,36 @@ Login - Zaira
 
         <!-- contact-area -->
         <section class="contact-area pt-80 pb-50">
-            <div class="container"> 
+            <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-6">
                         <div class="contact-form">
                             <h4 class="title">Welcome to Zaira</h4>
                             <p>Please sign-in to your account</p>
-                            <form id="contact-form" action="https://themegenix.net/html/zaira/themeclient/assets/mail.php"
-                                method="POST">
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+                            <form id="contact-form" action="{{ route('login') }}" method="POST">
+                                @csrf
                                 <div class="form-grp">
-                                    <label for="exampleFormControlTextarea1" class="form-label">Username</label>
-                                    <input type="text" name="name" placeholder="Enter your username">
+                                    <label for="exampleFormControlTextarea1" class="form-label">Email</label>
+                                    <input type="text" id="email" name="email" placeholder="Enter your username">
                                 </div>
                                 <div class="form-grp">
                                     <label for="exampleFormControlTextarea1" class="form-label">Password</label>
-                                    <input type="text" name="password" placeholder="............">
+                                    <input type="password" id="password" name="password" placeholder="............">
                                 </div>
                                 <button type="submit" class="title btn btn-two">Sign in</button>
                                 <div>
-                                    <p >New on our platform ? |<a href="{{ url('/register') }}"> Create an account</a></p>
+                                    <p>New on our platform ? |<a href="{{ url('/register') }}"> Create an account</a></p>
                                 </div>
                             </form>
-                            <p class="ajax-response mb-0"></p>
                         </div>
                     </div>
                 </div>

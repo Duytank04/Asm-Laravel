@@ -19,7 +19,7 @@
                         <div class="categories-item">
                             <div class="categories-img">
                                 <a href="">
-                                    <img src="{{ asset('themeclient/assets/img/images/categories_img02.png') }}"
+                                    <img src="{{ asset('storage/' . $category->image) }}"
                                         alt="">
                                 </a>
                             </div>
@@ -49,7 +49,7 @@
                             <h2 class="title">Bí quyết tốt nhất hàng tuần</h2>
                         </div>
                         <div class="view-all-btn">
-                            <a href="blog.html" class="link-btn">Xem tất cả
+                            <a href="{{ url('/') }}" class="link-btn">Xem tất cả
                                 <span class="svg-icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" fill="none">
                                         <path
@@ -72,16 +72,18 @@
                         <div class="col-xl-12">
                             <div class="ta-horizontal-post">
                                 <div class="horizontal-post-thumb">
-                                    <a href="blog-details.html"><img src="themeclient/assets/img/blog/recipe_img02.jpg"
+                                    <a href="{{ url('category', [$category->id]) }}"><img src="{{ asset('storage/' . $post->image) }}"
                                             alt=""></a>
                                 </div>
                                 <div class="horizontal-post-content">
-                                    <a href="blog.html" class="post-tag">{{ $category->name }}</a>
-                                    <h2 class="post-title"><a href="">{{ $post->title }}</a></h2>
+                                    <a href="{{ url('category', [$category->id]) }}"
+                                        class="post-tag">{{ $category->name }}</a>
+                                    <h2 class="post-title"><a href="{{ url('post', [$post->id]) }}">{{ $post->title }}</a></h2>
+                                    
                                     <div class="blog-post-meta">
                                         <ul class="list-wrap">
-                                            <li><i class="flaticon-user"></i>by<a href="author.html">Admin</a></li>
-                                            <li><i class="flaticon-calendar"></i>27 August, 2024</li>
+                                            <li><i class="flaticon-user"></i><a href="author.html">Admin</a></li>
+                                            <li><i class="flaticon-calendar"></i>{{ $post->created_at }}</li>
                                         </ul>
                                     </div>
                                 </div>

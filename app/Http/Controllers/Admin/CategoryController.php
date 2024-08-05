@@ -1,25 +1,22 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
-
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
 {
-    const PATH_VIEW = 'admin.categorys.';
+    const PATH_VIEW = 'admin.categories.';
 
-    const PATH_UPLOAD = 'categorys.';
+    const PATH_UPLOAD = 'categories';
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $data = Category::query()->latest('id')->paginate();
-        return view(self::PATH_VIEW . __FUNCTION__, compact('data'));
+        $categories = Category::all();
+        return view(self::PATH_VIEW . __FUNCTION__, compact('categories'));
     }
 
     public function create()
@@ -28,53 +25,72 @@ class CategoryController extends Controller
     }
 
     public function store(Request $request)
-{
-    // Loại bỏ các trường không cần thiết
-    $data = $request->except(['images']);
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'image' => 'nullable|image'
+        ]);
 
-    // Kiểm tra và xử lý file ảnh (nếu có)
-    if ($request->hasFile('images')) {
-        if (!Storage::exists(self::PATH_UPLOAD)) {
-            Storage::makeDirectory(self::PATH_UPLOAD);
+        $data = $request->all();
+
+        if ($request->hasFile('image')) {
+            $data['image'] = Storage::put(self::PATH_UPLOAD, $request->file('image'));
         }
-        $data['images'] = Storage::put(self::PATH_UPLOAD, $request->file('images'));
+
+        Category::create($data);
+
+        return redirect()->route('admin.categories.index')->with('success', 'Category created successfully.');
     }
-
-    dd($data);
-    // Lưu dữ liệu vào cơ sở dữ liệu
-    Category::query()->create($data);
-
-    return redirect()->route('admin.category.index');
-}
-
-    
-
 
     public function show(string $id)
     {
         $model = Category::query()->findOrFail($id);
-
-        return view(self::PATH_VIEW . __FUNCTION__, compact('model') );
+        return view(self::PATH_VIEW . __FUNCTION__, compact('model'));
     }
 
     public function edit(string $id)
     {
         $model = Category::query()->findOrFail($id);
-
-        return view(self::PATH_VIEW . __FUNCTION__, compact('model') );
+        return view(self::PATH_VIEW . __FUNCTION__, compact('model'));
     }
 
-    public function update(Request $request, Category $category)
+    public function update(Request $request, $id)
     {
-        $request->validate(['name' => 'required']);
-        $category->update($request->all());
-        return redirect()->route('categories.createpost');
+
+        $model = Category::query()->findOrFail($id);
+
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'image' => 'nullable|image'
+        ]);
+
+        $data = $request->all();
+
+        if ($request->hasFile('image')) {
+            $data['image'] = Storage::put(self::PATH_UPLOAD, $request->file('image'));
+        }
+
+        $curentImage = $model->image;
+
+        if($request->hasFile('image') && $curentImage && Storage::exists($curentImage)){
+            Storage::delete($curentImage);
+        }
+
+        $model->update($data);
+
+        return redirect()->route('admin.categories.index')->with('success', 'Post updated successfully');
     }
 
-    public function destroy(Category $category)
+    public function destroy(string $id)
     {
-        $category->delete();
-        return redirect()->route('categories.createpost');
+        $model = Category::query()->findOrFail($id);
+
+        $model->delete();
+
+        if($model->image && Storage::exists($model->image)){
+            Storage::delete($model->image);
+        }
+
+        return back();
     }
-    
 }

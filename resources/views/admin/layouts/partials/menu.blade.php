@@ -1,6 +1,6 @@
 <div class="navbar-brand-box">
     <!-- Dark Logo-->
-    <a href="index.html" class="logo logo-dark">
+    <a href="{{ url('admin') }}" class="logo logo-dark">
         <span class="logo-sm">
             <img src=" {{ asset('themeadmin/assets/images/logo-sm.png ')}}" alt="" height="22">
         </span>
@@ -9,7 +9,7 @@
         </span>
     </a>
     <!-- Light Logo-->
-    <a href="index.html" class="logo logo-light">
+    <a href="{{ url('admin') }}" class="logo logo-light">
         <span class="logo-sm">
             <img src=" {{ asset('themeadmin/assets/images/logo-sm.png ')}}" alt="" height="22">
         </span>
@@ -48,12 +48,6 @@
         <ul class="navbar-nav" id="navbar-nav">
             <li class="menu-title"><span data-key="t-menu">Menu</span></li>
             <li class="nav-item">
-                <a class="nav-link menu-link" href="#sidebarDashboards" data-bs-toggle="collapse"
-                    role="button" aria-expanded="false" aria-controls="sidebarDashboards">
-                    <i class="ri-dashboard-2-line"></i> <span data-key="t-dashboards">Dashboards</span>
-                </a>
-            </li> <!-- end Dashboard Menu -->
-            <li class="nav-item">
                 <a class="nav-link menu-link" href="#sidebarApps" data-bs-toggle="collapse" role="button"
                     aria-expanded="false" aria-controls="sidebarApps">
                     <i class="ri-apps-2-line"></i> <span data-key="t-apps">Apps</span>
@@ -69,7 +63,7 @@
                             <div class="collapse menu-dropdown" id="sidebarEcommerce">
                                 <ul class="nav nav-sm flex-column">
                                     <li class="nav-item">
-                                        <a href="{{ url('/post') }}" class="nav-link"
+                                        <a href="{{ url('admin/posts') }}" class="nav-link"
                                             data-key="t-orders">
                                             Bài viết </a>
                                     </li>
@@ -78,7 +72,7 @@
                             <div class="collapse menu-dropdown" id="sidebarEcommerce">
                                 <ul class="nav nav-sm flex-column">
                                     <li class="nav-item">
-                                        <a href="{{ url('/createpost') }}" class="nav-link"
+                                        <a href="{{ url('admin/posts/create') }}" class="nav-link"
                                             data-key="t-orders">
                                             Thêm bài viết </a>
                                     </li>
@@ -94,7 +88,16 @@
                             <div class="collapse menu-dropdown" id="sidebarProjects">
                                 <ul class="nav nav-sm flex-column">
                                     <li class="nav-item">
-                                        <a href="{{ route('admin.categorys.create') }}" class="nav-link"
+                                        <a href="{{ url('admin/categories') }}" class="nav-link"
+                                            data-key="t-list"> Thể loại
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="collapse menu-dropdown" id="sidebarProjects">
+                                <ul class="nav nav-sm flex-column">
+                                    <li class="nav-item">
+                                        <a href="{{ url('admin/categories/create') }}" class="nav-link"
                                             data-key="t-list"> Thêm thể loại
                                         </a>
                                     </li>

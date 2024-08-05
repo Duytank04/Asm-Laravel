@@ -6,7 +6,6 @@
 
 @section('content')
     <main class="fix">
-
         <!-- breadcrumb-area -->
         <div class="breadcrumb-area">
             <div class="container">
@@ -25,7 +24,6 @@
             </div>
         </div>
         <!-- breadcrumb-area-end -->
-
         <!-- contact-area -->
         <section class="contact-area pt-80 pb-50">
             <div class="container">
@@ -75,26 +73,42 @@
                             <div class="contact-form">
                                 <h4 class="title">Welcome to Zaira</h4>
                                 <p>Please sign-in to your account</p>
-                                <form id="contact-form" action="https://themegenix.net/html/zaira/themeclient/assets/mail.php"
-                                    method="POST">
+                                @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
+                                <form id="contact-form" action="{{ route('register') }}" method="POST">
+                                    @csrf
                                     <div class="form-grp">
-                                        <label for="exampleFormControlTextarea1" class="form-label">Username</label>
-                                        <input type="text" name="name" placeholder="Enter your Username">
+                                        <label for="exampleFormControlTextarea1" class="form-label">Tên đăng kí</label>
+                                        <input type="text" id="name" name="name"
+                                            placeholder="Enter your Username">
                                     </div>
                                     <div class="form-grp">
                                         <label for="exampleFormControlTextarea1" class="form-label">Email</label>
-                                        <input type="email" name="email" placeholder="Enter your E-mail">
+                                        <input type="email" id="email" name="email" placeholder="Enter your E-mail">
                                     </div>
                                     <div class="form-grp">
-                                        <label for="exampleFormControlTextarea1" class="form-label">Password</label>
-                                        <input type="password" name="pass" placeholder="Enter your Password">
+                                        <label for="exampleFormControlTextarea1" class="form-label">Mật khẩu</label>
+                                        <input type="password" id="password" name="password"
+                                            placeholder="Enter your Password">
                                     </div>
-                                    <button type="submit" class="btn btn-two">Sign in</button>
+                                    <div class="form-grp">
+                                        <label for="exampleFormControlTextarea1" class="form-label">Nhập lại mật
+                                            khẩu</label>
+                                        <input type="password" id="password_confirmation" name="password_confirmation"
+                                            placeholder="Enter your Password">
+                                    </div>
+                                    <button type="submit" class="btn btn-two">Đăng kí</button>
                                     <div class="content">
-                                        <p>Already have an account ? |<a href="{{ url('/login') }}"> Sign in instead</a></p>
+                                        <p>Already have an account ? |<a href="{{ url('login') }}"> Sign in instead</a></p>
                                     </div>
                                 </form>
-                                <p class="ajax-response mb-0"></p>
                             </div>
                         </div>
                     </div>

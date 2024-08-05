@@ -14,7 +14,7 @@
                         <div class="breadcrumb-content">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
+                                    <li class="breadcrumb-item"><a href="{{ url('/') }}">Trang chủ</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">Bài viết</li>
                                 </ol>
                             </nav>
@@ -35,6 +35,9 @@
                                 <div class="weekly-post-item-wrap">
                                     @foreach ($listpost as $post)
                                         <div class="weekly-post-item post-item">
+                                            <div class="weekly-post-thumb">
+                                                <a href="{{ url('post', [$post->id]) }}"><img src="{{ asset('storage/' . $post->image) }}" alt=""></a>
+                                            </div>
                                             <div class="weekly-post-content">
                                                 <a href="{{ url('category', [$category->id]) }}" class="post-tag">{{ $category->name }}</a>
                                                 <h3 class="post-title"><a href="{{ url('post', [$post->id]) }}">{{ $post->title }}</a></h3>
